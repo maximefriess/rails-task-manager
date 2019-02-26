@@ -1,12 +1,17 @@
 <h1>List of tasks</h1>
   <% @tasks.each do |task| %>
-    <label class="container"><%= link_to task.title, task_path(task) %>
+    <label class="label"><%= link_to task.title, task_path(task) %>
       <% if task.completed %>
-        <input type="checkbox" checked="checked">
+        <input type="checkbox" onclick="return false;" checked="checked">
       <% else %>
-        <input type="checkbox">
+        <input type="checkbox" onclick="return false;">
       <% end %>
     <span class="checkmark"></span>
     </label>
+    <p>- <%= link_to "Delete", task_path(task),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %></p>
   <% end %>
+  <hr/>
+  <p><%= link_to "+ Add a new task", taskNew_path %></p>
 
